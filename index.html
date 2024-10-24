@@ -45,14 +45,18 @@
         }
     </style>
 <style>
-  /* Add styles for the navigation menu */
+  body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+  }
+
   .navbar-nav .nav-link {
       position: relative;
       padding-bottom: 10px;
       transition: color 0.3s ease;
   }
 
-  /* Hover effect: yellow bottom line */
   .navbar-nav .nav-link:hover::after,
   .navbar-nav .nav-link.active::after {
       content: "";
@@ -61,11 +65,10 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background-color: #ffc107; /* Bootstrap warning color */
+      background-color: #ffc107;
       transition: width 0.3s ease;
   }
 
-  /* When not hovered or active, hide the line */
   .navbar-nav .nav-link::after {
       content: "";
       position: absolute;
@@ -73,20 +76,53 @@
       left: 0;
       width: 0;
       height: 3px;
-      background-color: #ffc107; /* Bootstrap warning color */
+      background-color: #ffc107;
       transition: width 0.3s ease;
   }
 
-  /* When a link is active, make it have a yellow bottom line */
   .navbar-nav .nav-link.active {
       color: #ffc107 !important;
   }
 
-  /* Ensure there is no content hiding under the fixed nav */
   body {
-      padding-top: 70px; /* Adjust based on your navbar height */
+      padding-top: 70px; 
+      margin: 0;
+  }
+
+  .navbar.fixed-top {
+      margin-bottom: 0;
+      border: none;
+      background-color: #f8f9fa;
+  }
+
+  #carouselExampleIndicators {
+      margin-top: -12px; /* Сильнее убираем пробелы через отрицательный отступ */
+      padding-top: 0 !important;
+      background-color: #f8f9fa;
+  }
+  
+  .carousel, .carousel-inner, .carousel-item {
+      margin-top: -12px !important; /* Принудительное удаление отступов */
+      padding-top: 0 !important;
+  }
+
+  * {
+      margin: 0;
+      padding: 0;
+  }
+
+  header, main, .carousel {
+      margin-top: -10px !important; /* Принудительное удаление оставшихся отступов */
+  }
+
+  .container {
+      overflow: hidden;
   }
 </style>
+
+
+
+
 
     <nav class="navbar navbar-expand-md navbar-expand-lg bg-warning-subtle fixed-top" id="mainNav">
       <div class="container">
