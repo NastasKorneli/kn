@@ -1201,7 +1201,28 @@ photographyButton.style.color = '#FFFFFF'; // белый цвет текста
     });
 </script>
 
-<!-- The rest of the existing content and scripts remain the same -->
+<script>
+  document.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+    let currentSection = "";
+    
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 70) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").substring(1) === currentSection) {
+            link.classList.add("active");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
