@@ -1202,26 +1202,46 @@ photographyButton.style.color = '#FFFFFF'; // белый цвет текста
 </script>
 
 <script>
-  document.addEventListener("scroll", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    const contactSection = document.getElementById("contact");
+    const secondSlider = document.getElementById("carouselExampleIndicators1");
 
-    let currentSection = "";
-    
-    sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 70) {
-            currentSection = section.getAttribute("id");
-        }
-    });
+    function setActiveNavLink() {
+        let currentSection = "";
 
-    navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").substring(1) === currentSection) {
-            link.classList.add("active");
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 70;
+            const sectionHeight = section.clientHeight;
+
+            if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                currentSection = section.getAttribute("id");
+            }
+        });
+
+        // Special condition to activate "Contact" when near the end of the page or near the second slider
+        const contactTop = contactSection.offsetTop - 70;
+        const sliderTop = secondSlider ? secondSlider.offsetTop : 0;
+
+        if (pageYOffset >= contactTop || (sliderTop && pageYOffset >= sliderTop - 70)) {
+            currentSection = "contact";
         }
-    });
+
+        // Update active class on nav links
+        navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").substring(1) === currentSection) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", setActiveNavLink);
 });
+
+
 </script>
 
 </body>
